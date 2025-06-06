@@ -1,75 +1,112 @@
 #include <stdio.h>
+#include <string.h>
+
+// Estrutura da carta
+struct Carta {
+    char estado[30];
+    char cidade[30];
+    char codigo[20];
+    int populacao;
+    float area;
+    float pib;
+    int pontosTuristicos;
+};
+
+// Função para cadastrar uma carta
+void cadastrarCarta(struct Carta *carta, int numero) {
+    printf("\nCadastro da Carta %d:\n", numero);
+
+    printf("Digite o estado: ");
+    scanf("%s", carta->estado);
+
+    printf("Digite a cidade: ");
+    scanf("%s", carta->cidade);
+
+    printf("Digite o código: ");
+    scanf("%s", carta->codigo);
+
+    printf("Digite a população: ");
+    scanf("%d", &carta->populacao);
+
+    printf("Digite a área: ");
+    scanf("%f", &carta->area);
+
+    printf("Digite o PIB: ");
+    scanf("%f", &carta->pib);
+
+    printf("Digite o número de pontos turísticos: ");
+    scanf("%d", &carta->pontosTuristicos);
+}
+
+// Função para comparar dois atributos
+void compararCartas(struct Carta c1, struct Carta c2, int atributo) {
+    printf("\nResultado da rodada:\n");
+
+    switch (atributo) {
+        case 1:
+            printf("Comparando População:\n");
+            if (c1.populacao > c2.populacao)
+                printf("Carta 1 venceu!\n");
+            else if (c1.populacao < c2.populacao)
+                printf("Carta 2 venceu!\n");
+            else
+                printf("Empate!\n");
+            break;
+
+        case 2:
+            printf("Comparando Área:\n");
+            if (c1.area > c2.area)
+                printf("Carta 1 venceu!\n");
+            else if (c1.area < c2.area)
+                printf("Carta 2 venceu!\n");
+            else
+                printf("Empate!\n");
+            break;
+
+        case 3:
+            printf("Comparando PIB:\n");
+            if (c1.pib > c2.pib)
+                printf("Carta 1 venceu!\n");
+            else if (c1.pib < c2.pib)
+                printf("Carta 2 venceu!\n");
+            else
+                printf("Empate!\n");
+            break;
+
+        case 4:
+            printf("Comparando Pontos Turísticos:\n");
+            if (c1.pontosTuristicos > c2.pontosTuristicos)
+                printf("Carta 1 venceu!\n");
+            else if (c1.pontosTuristicos < c2.pontosTuristicos)
+                printf("Carta 2 venceu!\n");
+            else
+                printf("Empate!\n");
+            break;
+
+        default:
+            printf("Atributo inválido!\n");
+    }
+}
 
 int main() {
+    struct Carta carta1, carta2;
+    int escolha;
 
-// carta 1
+    // Cadastro das cartas
+    cadastrarCarta(&carta1, 1);
+    cadastrarCarta(&carta2, 2);
 
-char estado1[15];
-char cidade1[15];
-char codigo1[15];
-int  populacao1;
-float area1;
-float pib1;
-int pontosTuristicos1;
+    // Escolher atributo
+    printf("\nEscolha o atributo para comparar:\n");
+    printf("1 - População\n");
+    printf("2 - Área\n");
+    printf("3 - PIB\n");
+    printf("4 - Pontos Turísticos\n");
+    printf("Digite o número do atributo: ");
+    scanf("%d", &escolha);
 
-// carta2
+    // Comparação e resultado
+    compararCartas(carta1, carta2, escolha);
 
-char estado2[15];
-char cidade2[15];
-char codigo2[15];
-int  populacao2;
-float area2;
-float pib2;
-int pontosTuristicos2;
-
-// dados carta1
-
-printf("Cadastro da Carta 1:\n");
-
-printf("digite o estado:");
-scanf("%s", &estado1);
-
-printf("digite a cidade:");
-scanf("%s", &cidade1);
-
-printf("digite o codigo:");
-scanf("%s", &codigo1);
-
-printf("digite a população:");
-scanf("%d", &populacao1);
-
-printf("Digite o PIB:");
-scanf("%f", &area1);
-
-
-printf("Digite o Número de Pontos Turísticos:");
-scanf("%d", &pontosTuristicos2);
-
-// dados carta2
-
-printf("Cadastro da Carta 2:\n");
-
-printf("digite o estado:");
-scanf("%s", &estado2);
-
-printf("digite a cidade:");
-scanf("%s", &cidade2);
-
-printf("digite o codigo:");
-scanf("%s", &codigo2);
-
-printf("digite a população:");
-scanf("%d", &populacao2);
-
-printf("Digite o PIB:");
-scanf("%f", &area2);
-
-
-printf("Digite o Número de Pontos Turísticos:");
-scanf("%d", &pontosTuristicos2);
-
-
-
-return 0;
-
+    return 0;
 }
